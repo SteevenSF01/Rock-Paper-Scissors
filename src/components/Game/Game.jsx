@@ -11,12 +11,34 @@ export default function Game(props) {
   ];
   const [result, setResult] = useState("");
   const [choixRandom, setChoixRandom] = useState(null);
+  const [countdown, setCountdown] = useState(3);
+
+  //! *****************************************
+  useEffect(() => {
+    const counterInterval = setInterval(() => {
+      setCountdown((counter) => counter - 1);
+    }, 1000);
+
+    if (countdown == 0 && !choixRandom) {
+      clearInterval(counterInterval);
+
+      const choixPc =
+        choixComponents[Math.floor(Math.random() * choixComponents.length)];
+
+      setChoixRandom(choixPc);
+    }
+
+    return () => clearInterval(counterInterval);
+  }, [countdown, choixRandom, choixComponents]);
+  //! *****************************************
 
   useEffect(() => {
-    const randomChoice =
-      choixComponents[Math.floor(Math.random() * choixComponents.length)];
-    setChoixRandom(randomChoice);
-  }, []);
+    if (choixRandom) {
+      resultat(props.navigation, choixRandom.type);
+    }
+  }, [choixRandom, props.navigation]);
+
+  //! ****************************************
 
   const resultat = (choixUser, choixPc) => {
     if (
@@ -25,24 +47,13 @@ export default function Game(props) {
       (choixUser === "paper" && choixPc === "rock")
     ) {
       setResult("YOU WIN");
-      props.setScore(props.score +1)
     } else if (choixUser === choixPc) {
-        setResult("IT'S A DRAW");
+      setResult("IT'S A DRAW");
     } else {
-        setResult("YOU LOSE");
-        if (props.score > 0) {
-            props.setScore(props.score -1)
-        }else{
-            props.setScore(0)
-        }
+      setResult("YOU LOSE");
     }
   };
-
-  useEffect(() => {
-    if (choixRandom) {
-      resultat(props.navigation, choixRandom.type);
-    }
-  }, [choixRandom, props.navigation]);
+  //! ****************************************
 
   return (
     <div className="w-[90%] h-[55%] mt-8 mx-auto flex flex-wrap justify-between p-2 ">
@@ -58,8 +69,11 @@ export default function Game(props) {
       </div>
 
       <div className="w-[50%] h-[55%] text-white flex flex-col justify-between items-center ">
-    
-      {choixRandom ? choixRandom.component : null}
+        {countdown > 0 ? (
+          <p className="text-[40px] text-white mt-12 ">{countdown}</p>
+        ) : (
+          choixRandom && choixRandom.component
+        )}
         <p>THE HOUSE PICKED</p>
       </div>
       <div className="flex flex-col justify-center items-center w-[100%]">
@@ -68,7 +82,6 @@ export default function Game(props) {
         <button
           onClick={() => {
             props.setNavigation("home");
-            // setResult("");
           }}
           className="text-[#1f3756] px-12 rounded-xl py-2 bg-white"
         >
