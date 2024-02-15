@@ -3,7 +3,6 @@
 body{
   height: 100vh;
   display: flex;
-  padding-top: 40px;
   justify-content: center;
   font-family: "Barlow Semi Condensed" ,sans-serif;
   background: rgb(31,55,86);

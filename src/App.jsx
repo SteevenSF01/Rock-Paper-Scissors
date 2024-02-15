@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Rock from "./components/Rock/Rock";
 import Paper from "./components/Paper/Paper";
 import Scissors from "./components/Scissors/Scissors";
+import Rules from "./components/Rulesgame/Rules";
 
 function App() {
   return (
