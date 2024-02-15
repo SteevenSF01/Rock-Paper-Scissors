@@ -56,8 +56,8 @@ export default function Game(props) {
   //! ****************************************
 
   return (
-    <div className="w-[90%] h-[55%] mt-8 mx-auto flex flex-wrap justify-between p-2 ">
-      <div className="w-[50%] h-[55%] text-white flex flex-col justify-between items-center  ">
+    <div className="w-[90%] h-[55%] md:p-0 mt-8 mx-auto flex flex-wrap justify-between p-2 ">
+      <div className="w-[50%] h-[55%] text-white md:flex-col-reverse flex flex-col justify-between items-center  ">
         {props.navigation === "paper" ? (
           <Paper />
         ) : props.navigation === "scissors" ? (
@@ -68,7 +68,7 @@ export default function Game(props) {
         <p>YOU PICKED</p>
       </div>
 
-      <div className="w-[50%] h-[55%] text-white flex flex-col justify-between items-center ">
+      <div className="w-[50%] h-[55%] md:flex-col-reverse text-white flex flex-col justify-between items-center ">
         {countdown > 0 ? (
           <p className="text-[40px] text-white mt-12 ">{countdown}</p>
         ) : (
@@ -76,7 +76,7 @@ export default function Game(props) {
         )}
         <p>THE HOUSE PICKED</p>
       </div>
-      <div className="flex flex-col justify-center items-center w-[100%]">
+      <div className="flex flex-col justify-center items-center w-[100%] lg:absolute lg:w-[80%] right-[100px] lg:top-[200px] ">
         <p className="text-white text-[44px] font-bold ">{result}</p>
 
         <button

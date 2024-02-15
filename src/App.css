@@ -16,6 +16,9 @@ body{
   background-repeat: no-repeat;
   background-position: 50%;
 }
+#root{
+  width: 100%;
+}
 @media (min-width: 768px) {
   .containerMain{
     background-size: 70% 80%;
