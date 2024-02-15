@@ -1,5 +1,4 @@
 import React from 'react'
-import './Rock.css'
 import ROCK from './../../images/icon-rock.svg'
 
 export default function Rock() {
