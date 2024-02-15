@@ -25,10 +25,16 @@ export default function Game(props) {
       (choixUser === "paper" && choixPc === "rock")
     ) {
       setResult("YOU WIN");
+      props.setScore(props.score +1)
     } else if (choixUser === choixPc) {
-      setResult("IT'S A DRAW");
+        setResult("IT'S A DRAW");
     } else {
-      setResult("YOU LOSE");
+        setResult("YOU LOSE");
+        if (props.score > 0) {
+            props.setScore(props.score -1)
+        }else{
+            props.setScore(0)
+        }
     }
   };
 
