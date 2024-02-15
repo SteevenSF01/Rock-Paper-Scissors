@@ -7,7 +7,7 @@ body{
   justify-content: center;
   font-family: "Barlow Semi Condensed" ,sans-serif;
   background: rgb(31,55,86);
-  background: radial-gradient(circle, rgba(31,55,86,1) 0%, rgba(20,21,57,1) 100%);
+  background: radial-gradient(circle, #1f3756 0%, rgba(20,21,57,1) 100%);
 }
 
 .containerMain{

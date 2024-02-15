@@ -36,7 +36,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <Game navigation={navigation} />
+        <Game navigation={navigation} setNavigation = {setNavigation} />
       )}
 
       <div className=" flex justify-center ">
