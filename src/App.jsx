@@ -1,28 +1,44 @@
 import { useState } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
+
 import Rock from "./components/Rock/Rock";
 import Paper from "./components/Paper/Paper";
 import Scissors from "./components/Scissors/Scissors";
+
+import Game from "./components/Game/Game";
+
 import RulesGame from "./images/image-rules.svg";
 import Close from "./images/icon-close.svg";
 
 function App() {
   const [isOpen, setIsOpen] = useState("none");
+  const [score, setScore] = useState(0);
+  const [navigation, setNavigation] = useState("home");
+
+  console.log(navigation);
+
+  const counter = () => {
+    setScore(score + 1);
+  };
+  
 
   return (
     <>
-      <Header />
+      <Header score={score} />
 
-      <div className="w-[90%] h-[55%] mt-8 mx-auto flex flex-wrap justify-between p-2 containerMain">
-        <Paper />
-
-        <Scissors />
-
-        <div className="w-[100%] h-[50%] flex justify-center items-end ">
-          <Rock />
+      {navigation == "home" ? (
+        <div className="w-[90%] h-[55%] px-5 mt-8 mx-auto flex flex-wrap justify-between p-2 containerMain">
+          <Paper counter={counter} setNavigation = {setNavigation} />
+          <Scissors setNavigation = {setNavigation} />
+          <div className="w-[100%] h-[50%] flex justify-center items-end ">
+            <Rock setNavigation = {setNavigation} />
+          </div>
         </div>
-      </div>
+      ) : (
+        <Game navigation={navigation} />
+      )}
+
       <div className=" flex justify-center ">
         <button
           onClick={() => {
@@ -34,7 +50,6 @@ function App() {
           Rules{" "}
         </button>
       </div>
-
       <div
         className="bg-white absolute top-0 left-0 h-[100%] w-[100%]"
         style={{ display: `${isOpen}` }}
