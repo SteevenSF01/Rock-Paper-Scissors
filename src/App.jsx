@@ -27,7 +27,7 @@ function App() {
       <Header score={score} />
 
       {navigation == "home" ? (
-        <div className="w-[90%] h-[55%] px-5 mt-8 mx-auto flex flex-wrap justify-between p-2 containerMain">
+          <div className="w-[90%] h-[55%] md:w-[600px] md:h-[380px] md:mt-10 md:p-0 px-5 mt-8  mx-auto flex flex-wrap justify-between md:justify-around p-2 containerMain">
           <Paper counter={counter} setNavigation = {setNavigation} />
           <Scissors setNavigation = {setNavigation} />
           <div className="w-[100%] h-[50%] flex justify-center items-end ">
@@ -42,7 +42,7 @@ function App() {
         score = {score} />
       )}
 
-      <div className=" flex justify-center ">
+      <div className=" flex justify-center md:absolute md:right-[50px] md:bottom-[50px] ">
         <button
           onClick={() => {
             setIsOpen("block");
@@ -54,19 +54,19 @@ function App() {
         </button>
       </div>
       <div
-        className="bg-white absolute top-0 left-0 h-[100%] w-[100%]"
+        className="bg-white absolute top-0 left-0 h-[100%] w-[100%] md:w-[35%] md:h-[60%] md:rounded-2xl md:top-[20%] md:left-[33%] "
         style={{ display: `${isOpen}` }}
       >
-        <div className=" h-[100%] py-10 flex flex-col justify-between items-center ">
-          <h1 className="text-[#3b4363] text-[30px] font-semibold ">RULES</h1>
-          <img src={RulesGame} alt="" className="w-[75%] " />
+        <div className=" h-[100%] py-10 md:p-4 md:block flex flex-col justify-between items-center ">
+          <h1 className="text-[#3b4363] text-[30px] font-semibold md:text-start ">RULES</h1>
+          <img src={RulesGame} alt="" className="w-[75%] md:mx-auto md:mt-12 " />
           <img
             onClick={() => {
               setIsOpen("none");
             }}
             src={Close}
             alt=""
-            className="w-[5%] "
+            className="w-[5%] md:absolute md:top-7 right-7 "
           />
         </div>
       </div>
