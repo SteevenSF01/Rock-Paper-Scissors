@@ -4,21 +4,53 @@ import Header from "./components/header/Header";
 import Rock from "./components/Rock/Rock";
 import Paper from "./components/Paper/Paper";
 import Scissors from "./components/Scissors/Scissors";
-import Rules from "./components/Rulesgame/Rules";
+import RulesGame from "./images/image-rules.svg";
+import Close from "./images/icon-close.svg";
 
 function App() {
+  const [isOpen, setIsOpen] = useState("none");
+
   return (
     <>
       <Header />
-      <div className="w-[100%] h-[55%] mt-8 flex flex-wrap justify-between p-2 containerMain">
+
+      <div className="w-[90%] h-[55%] mt-8 mx-auto flex flex-wrap justify-between p-2 containerMain">
         <Paper />
+
         <Scissors />
+
         <div className="w-[100%] h-[50%] flex justify-center items-end ">
-        <Rock />
+          <Rock />
         </div>
       </div>
-      <div className="flex justify-center mt-8">
-        <button className="border-2 border-[#606e85] text-white px-8 py-1 rounded-lg ">Rules</button>
+      <div className=" flex justify-center ">
+        <button
+          onClick={() => {
+            setIsOpen("block");
+          }}
+          className="py-1 px-8 border-[#606e85] rounded-lg border-2 mt-3 text-white"
+        >
+          {" "}
+          Rules{" "}
+        </button>
+      </div>
+
+      <div
+        className="bg-white absolute top-0 left-0 h-[100%] w-[100%]"
+        style={{ display: `${isOpen}` }}
+      >
+        <div className=" h-[100%] py-10 flex flex-col justify-between items-center ">
+          <h1 className="text-[#3b4363] text-[30px] font-semibold ">RULES</h1>
+          <img src={RulesGame} alt="" className="w-[75%] " />
+          <img
+            onClick={() => {
+              setIsOpen("none");
+            }}
+            src={Close}
+            alt=""
+            className="w-[5%] "
+          />
+        </div>
       </div>
     </>
   );

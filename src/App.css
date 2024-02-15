@@ -2,6 +2,7 @@
 
 body{
   height: 100vh;
+  position: relative;
   display: flex;
   justify-content: center;
   font-family: "Barlow Semi Condensed" ,sans-serif;
