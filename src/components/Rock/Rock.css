@@ -1,0 +1,13 @@
+.border-gradient {
+    border-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #dc2e4e, #dd405d) 1;
+  }
+  
+  .button-container {
+    height: 50%;
+    width: 50%;
+    display: inline-block; /* Esto asegura que el contenedor tome el tamaño del contenido */
+    border-radius: 50%; /* Esto hace que el contenedor sea circular */
+  }
+  
