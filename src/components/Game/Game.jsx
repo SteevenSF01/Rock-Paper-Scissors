@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Scissors from "../Scissors/Scissors";
 import Rock from "../Rock/Rock";
 import Paper from "../Paper/Paper";
 
 export default function Game(props) {
-  const choixComponents = [<Rock />, <Paper />, <Scissors />];
+  const choixComponents = [
+    { type: "rock", component: <Rock /> },
+    { type: "paper", component: <Paper /> },
+    { type: "scissors", component: <Scissors /> },
+  ];
+  const [result, setResult] = useState("");
+  const [choixRandom, setChoixRandom] = useState(null);
 
-  const choixRandom =
-    choixComponents[Math.floor(Math.random() * choixComponents.length)];
+  useEffect(() => {
+    const randomChoice =
+      choixComponents[Math.floor(Math.random() * choixComponents.length)];
+    setChoixRandom(randomChoice);
+  }, []);
+
+  const resultat = (choixUser, choixPc) => {
+    if (
+      (choixUser === "rock" && choixPc === "scissors") ||
+      (choixUser === "scissors" && choixPc === "paper") ||
+      (choixUser === "paper" && choixPc === "rock")
+    ) {
+      setResult("YOU WIN");
+    } else if (choixUser === choixPc) {
+      setResult("IT'S A DRAW");
+    } else {
+      setResult("YOU LOSE");
+    }
+  };
+
+  useEffect(() => {
+    if (choixRandom) {
+      resultat(props.navigation, choixRandom.type);
+    }
+  }, [choixRandom, props.navigation]);
 
   return (
     <div className="w-[90%] h-[55%] mt-8 mx-auto flex flex-wrap justify-between p-2 ">
@@ -23,14 +52,22 @@ export default function Game(props) {
       </div>
 
       <div className="w-[50%] h-[55%] text-white flex flex-col justify-between items-center ">
-        {choixRandom}
+    
+      {choixRandom ? choixRandom.component : null}
         <p>THE HOUSE PICKED</p>
       </div>
       <div className="flex flex-col justify-center items-center w-[100%]">
-        <p className="text-white text-[44px] font-bold ">YOU WIN</p>
-        <button 
-        onClick={() => props.setNavigation('home')}
-        className="text-[#1f3756] px-12 rounded-xl py-2 bg-white">PLAY AGAIN</button>
+        <p className="text-white text-[44px] font-bold ">{result}</p>
+
+        <button
+          onClick={() => {
+            props.setNavigation("home");
+            // setResult("");
+          }}
+          className="text-[#1f3756] px-12 rounded-xl py-2 bg-white"
+        >
+          PLAY AGAIN
+        </button>
       </div>
     </div>
   );

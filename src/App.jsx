@@ -16,7 +16,6 @@ function App() {
   const [score, setScore] = useState(0);
   const [navigation, setNavigation] = useState("home");
 
-  console.log(navigation);
 
   const counter = () => {
     setScore(score + 1);
